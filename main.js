@@ -1,6 +1,6 @@
 let userName = prompt('Ingresa tu nombre').toLowerCase()
 
-if(userName !== undefined && userName !== " "){
+if(userName !== ""){
     alert('Bienvenido ' + userName)
     let userNumber = parseFloat(prompt(userName + ` ingresa un numero para saber si es un numero par o impar`))
     do{
@@ -16,4 +16,6 @@ if(userName !== undefined && userName !== " "){
             break
         }
     }while(userNumber)
+}else{
+    userName = prompt('Incorrecto, ingresar uno nuevo').toLowerCase()
 }
