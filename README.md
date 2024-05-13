@@ -1,7 +1,5 @@
-Hola Bienvenido a Par-Impar-Check
+Hola esto es un buscador de zona horaria de paises
 
-Primero tenes que ingresar tu nombre o apodo
-
-Despues ingresa el numero que quieras saber si es par o impar
+Podes buscar por nombre , zona horaria o podes ver todos los paises de america y su zona
 
 A disfrutar!!
