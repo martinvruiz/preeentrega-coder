@@ -32,6 +32,12 @@ if(userName !== ""){
 
 let usuario = parseInt(prompt("Ingrese opcion: \n1. Mostrar todos los paises \n2. Buscar por nombre de pais \n3. Buscar por zona horaria(GMT)"))
 
+//Funcion para que el usuario pueda elegir nuevamente una opcion
+function opciones(){
+    usuario = parseInt(prompt("Ingrese opcion: \n1. Mostrar todos los paises \n2. Buscar por nombre de pais \n3. Buscar por zona horaria(GMT)"))
+}
+
+
 //funcion constructora de objetos
 function Pais(nombre, zonaHoraria,continente){
     this.nombre = nombre
@@ -66,8 +72,9 @@ let listaPais = [pais1,pais2,pais3,pais4,pais5,pais6,pais7,pais8,pais9,pais10,pa
 // Mostrar todos los objetos
 if(usuario == 1){
 listaPais.forEach(function(x){
-    console.log(x)
-})}
+    console.log(x)})
+    opciones()
+}
 
 //Buscar un pais en particular
 
@@ -94,8 +101,10 @@ function filtroHorario(){
 
 if(usuario == 2){
     filtroNombre()
+    opciones()
 }
 
 if(usuario == 3){
     filtroHorario()
+    opciones()
 }
