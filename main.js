@@ -121,6 +121,11 @@ btn3.addEventListener("click", (e)=>{
     let zonaHorariaForm = prompt("Zona horaria del pais a agregar")
     let continenteForm = prompt("Continente del pais a agregar")
 
+    if(!nombreForm || !zonaHorariaForm || !continenteForm){
+        alert("Ingrese datos por favor")
+        return
+    }
+
     let PaisAgregado = listaPais.some(pais => pais.nombre === nombreForm)
 
 
