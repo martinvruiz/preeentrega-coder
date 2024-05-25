@@ -30,7 +30,11 @@ if(userName !== ""){
 
 //Segunda Preentrega
 
-let usuario = parseInt(prompt("Ingrese opcion: \n1. Mostrar todos los paises \n2. Buscar por nombre de pais \n3. Buscar por zona horaria(GMT)"))
+let btn1 = document.getElementById("show")
+let btn2 = document.getElementById("search")
+let btn3 = document.getElementById("add")
+
+/*let usuario = parseInt(prompt("Ingrese opcion: \n1. Mostrar todos los paises \n2. Buscar por nombre de pais \n3. Buscar por zona horaria(GMT)"))*/
 
 //Funcion para que el usuario pueda elegir nuevamente una opcion
 function opciones(){
@@ -45,66 +49,91 @@ function Pais(nombre, zonaHoraria,continente){
     this.Continente = continente
 }
 
-let pais1 = new Pais("argentina", "-3", "America")
-let pais2 = new Pais("bolivia", "-4","America")
-let pais3 = new Pais("brasil", "-3","America")
-let pais4 = new Pais("chile", "-3","America")
-let pais5 = new Pais("colombia", "-5","America")
-let pais6 = new Pais("costa rica", "-6","America")
-let pais7 = new Pais("cuba", "-4","America")
-let pais8 = new Pais("ecuador", "-5","America")
-let pais9 = new Pais("el salvador", "-6","America")
-let pais10 = new Pais("guatemala", "-6","America")
-let pais11 = new Pais("honduras", "-6","America")
-let pais12 = new Pais("mexico", "-5","America")
-let pais13 = new Pais("nicaragua", "-6","America")
-let pais14 = new Pais("panama", "-5","America")
-let pais15 = new Pais("paraguay", "-4","America")
-let pais16 = new Pais("peru", "-5","America")
-let pais17 = new Pais("puertoRico","-4","America")
-let pais18 = new Pais("uruguay","-3","America")
-let pais19 = new Pais("venezuela","-4:30","America")
+let pais1 = new Pais("Argentina", "-3", "America")
+let pais2 = new Pais("Bolivia", "-4","America")
+let pais3 = new Pais("Brasil", "-3","America")
+let pais4 = new Pais("Chile", "-3","America")
+let pais5 = new Pais("Colombia", "-5","America")
+let pais6 = new Pais("Costa rica", "-6","America")
+let pais7 = new Pais("Cuba", "-4","America")
+let pais8 = new Pais("Ecuador", "-5","America")
+let pais9 = new Pais("El salvador", "-6","America")
+let pais10 = new Pais("Guatemala", "-6","America")
+let pais11 = new Pais("Honduras", "-6","America")
+let pais12 = new Pais("Mexico", "-5","America")
+let pais13 = new Pais("Nicaragua", "-6","America")
+let pais14 = new Pais("Panama", "-5","America")
+let pais15 = new Pais("Paraguay", "-4","America")
+let pais16 = new Pais("Peru", "-5","America")
+let pais17 = new Pais("Puerto Rico","-4","America")
+let pais18 = new Pais("Uruguay","-3","America")
+let pais19 = new Pais("Venezuela","-4:30","America")
 
 // Lista con todos los objetos creados
 let listaPais = [pais1,pais2,pais3,pais4,pais5,pais6,pais7,pais8,pais9,pais10,pais11,pais12,pais13,pais14,pais15,pais16,pais17,pais18,pais19]
 
 
 // Mostrar todos los objetos
-if(usuario == 1){
-listaPais.forEach(function(x){
-    console.log(x)})
-    opciones()
+function crearPais (pais){
+    let addPais = document.createElement("div");
+    addPais.innerHTML = `<p class="pais-container">${pais.nombre} / ${pais.Continente} / ${pais.zonaHoraria}</p>`;
+    return addPais;
 }
+
+function mostrarPais(){
+    const container = document.getElementById("paises");
+    container.innerHTML = "";
+    
+    listaPais.forEach(pais => {
+        const divPais = crearPais(pais);
+        container.appendChild(divPais);
+    }) 
+}
+btn1.addEventListener("click", mostrarPais)
 
 //Buscar un pais en particular
 
 function filtroNombre(){
-    let busqueda = prompt("Ingrese pais que quiere buscar").trim().toLowerCase()
-    let resultado = listaPais.filter((Pais)=> Pais.nombre.includes(busqueda))
+    const container = document.getElementById("paises");
+    container.innerHTML = "";
 
-    if(busqueda.length > 0){
-        console.log(resultado)
+    let busqueda = prompt("Ingrese pais que quiere buscar").trim().toLowerCase()
+
+    const usuarioBusqueda = listaPais.filter(pais => pais.nombre.toLowerCase().includes(busqueda))
+    if (usuarioBusqueda.length > 0) {
+        usuarioBusqueda.forEach(pais => {
+            const divPais = crearPais(pais);
+            container.appendChild(divPais);
+    })}else{
+        alert("No se encontro el pais")
     }
 }
 
+
+btn2.addEventListener("click",filtroNombre)
 // buscar por zona horaria
 
-function filtroHorario(){
-    let busqueda = prompt("Ingrese zona horaria que quiere buscar")
-    let resultado = listaPais.filter((Pais)=> Pais.zonaHoraria.includes(busqueda))
+const agregarPais = document.getElementById("paisForm")
 
-    if(busqueda.length > 0){
-        console.log(resultado)
+btn3.addEventListener("click", (e)=>{
+
+    let nombreForm = prompt("Nombre del pais")
+    let zonaHorariaForm = prompt("Zona horaria del pais a agregar")
+    let continenteForm = prompt("Continente del pais a agregar")
+
+    let PaisAgregado = listaPais.some(pais => pais.nombre === nombreForm)
+
+
+    if(PaisAgregado){
+        alert("Ingrese un pais que no este en la lista")
+    }else{
+    let paisAgregado = new Pais (nombreForm, zonaHorariaForm, continenteForm)
+    listaPais.push(paisAgregado)
+    
+    let listaAgregados = document.getElementById("agregados")
+
+    let paisElement = document.createElement("div")
+    paisElement.textContent = ` ${nombreForm} / ${continenteForm} / ${zonaHorariaForm}`
+    listaAgregados.appendChild(paisElement)
     }
-}
-
-
-if(usuario == 2){
-    filtroNombre()
-    opciones()
-}
-
-if(usuario == 3){
-    filtroHorario()
-    opciones()
-}
+})
