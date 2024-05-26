@@ -45,6 +45,9 @@ a{
     margin-bottom: 10px;
 }
 
+.list{
+    margin-bottom: 10px;
+}
 
 .pais-container{
     width: 100%;
@@ -53,6 +56,7 @@ a{
     justify-content: center;
     align-items: center;
     font-weight: bolder;
+    padding: 5px;
 }
 
 .buttonLink{
@@ -88,13 +92,14 @@ a{
 @media (max-width: 572px) {
     main{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .agregados{
         position: relative;
         width: 100%;
         margin-bottom: 10px;
+        margin-top: 10px;
     }
 
     .btn{
