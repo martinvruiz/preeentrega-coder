@@ -89,7 +89,7 @@ function filtroNombre(){
 
 
 function mostrarHora(nombre, zona) {
-    let url = `http://api.timezonedb.com/v2.1/get-time-zone?key=4ARNU0YE6R30&format=json&by=zone&zone=${zona}`;
+    let url = `https://api.timezonedb.com/v2.1/get-time-zone?key=4ARNU0YE6R30&format=json&by=zone&zone=${zona}`;
 
 
     fetch(url)
