@@ -1,35 +1,3 @@
-//Primer Preentrega
-
-/*let userName = prompt('Ingresa tu nombre').toLowerCase()
-
-if(userName !== ""){
-    alert('Bienvenido ' + userName)
-    let userNumber = parseFloat(prompt(userName + ` ingresa un numero para saber si es un numero par o impar`))
-    do{
-        if(userNumber % 2 == 0){
-            alert("Es par")
-            userNumber = parseFloat(prompt(userName + ` ingresa otro numero para saber si es un numero par o impar`))
-            userNumberLog()
-        }else{
-            alert("Es impar")
-            userNumber = parseFloat(prompt(userName + ` ingresa otro numero para saber si es un numero par o impar`))
-            userNumberLog()
-        }
-        
-        if(userNumber == NaN){
-            break
-        }
-        function userNumberLog(){
-            console.log(userNumber)
-        }
-    }while(userNumber)
-}else{
-    userName = prompt('Incorrecto, ingresar uno nuevo').toLowerCase()
-}
-*/
-
-//Segunda Preentrega
-
 let btn1 = document.getElementById("show")
 let btn2 = document.getElementById("search")
 let btn3 = document.getElementById("add")
@@ -49,20 +17,21 @@ let pais5 = new Pais("Colombia", "-5","America")
 let pais6 = new Pais("Costa rica", "-6","America")
 let pais7 = new Pais("Cuba", "-4","America")
 let pais8 = new Pais("Ecuador", "-5","America")
-let pais9 = new Pais("El salvador", "-6","America")
+let pais9 = new Pais("El Salvador", "-6","America")
 let pais10 = new Pais("Guatemala", "-6","America")
 let pais11 = new Pais("Honduras", "-6","America")
-let pais12 = new Pais("Mexico", "-5","America")
+let pais12 = new Pais("Mexico", "-6","America")
 let pais13 = new Pais("Nicaragua", "-6","America")
 let pais14 = new Pais("Panama", "-5","America")
 let pais15 = new Pais("Paraguay", "-4","America")
 let pais16 = new Pais("Peru", "-5","America")
 let pais17 = new Pais("Puerto Rico","-4","America")
 let pais18 = new Pais("Uruguay","-3","America")
-let pais19 = new Pais("Venezuela","-4:30","America")
+let pais19 = new Pais("Venezuela","-4","America")
 
 // Lista con todos los objetos creados
 let listaPais = [pais1,pais2,pais3,pais4,pais5,pais6,pais7,pais8,pais9,pais10,pais11,pais12,pais13,pais14,pais15,pais16,pais17,pais18,pais19]
+
 
 window.onload = () => {
     const storedData = localStorage.getItem("paises");
@@ -111,9 +80,32 @@ function filtroNombre(){
         usuarioBusqueda.forEach(pais => {
             const divPais = crearPais(pais);
             container.appendChild(divPais);
+
+            mostrarHora(pais.nombre,pais.zonaHoraria)
     })}else{
         alert("No se encontro el pais")
     }
+}
+
+
+function mostrarHora(nombre, zona) {
+    let url = `http://api.timezonedb.com/v2.1/get-time-zone?key=4ARNU0YE6R30&format=json&by=zone&zone=${zona}`;
+
+
+    fetch(url)
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error('No se pudo obtener la hora de la API');
+            }
+            return resp.json();
+        })
+        .then(data => {
+                const horaLocal = new Date(data.formatted);
+                document.getElementById("horaLocal").innerText = `Hora local de ${nombre}: ${horaLocal.toLocaleString()}`;})
+        .catch(error => {
+            console.error(`error`, error);
+            document.getElementById("horaLocal").innerText = `Error al mostrar el horario: ${error.message}`;
+        });
 }
 
 

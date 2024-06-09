@@ -89,6 +89,12 @@ a{
     align-items: center;
 }
 
+
+.horaLocal{
+    width: 100%;
+    text-align: center;
+}
+
 @media (max-width: 572px) {
     main{
         display: flex;
