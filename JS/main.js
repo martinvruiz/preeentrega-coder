@@ -83,7 +83,10 @@ function filtroNombre(){
 
             mostrarHora(pais.nombre,pais.zonaHoraria)
     })}else{
-        alert("No se encontro el pais")
+        Swal.fire({
+            icon: "error",
+            text: "No se encontro el pais",
+        });
     }
 }
 
@@ -114,14 +117,17 @@ btn2.addEventListener("click",filtroNombre)
 
 const agregarPais = document.getElementById("paisForm")
 
-btn3.addEventListener("click", (e)=>{
+btn3.addEventListener("click", ()=>{
 
     let nombreForm = prompt("Nombre del pais")
     let zonaHorariaForm = prompt("Zona horaria del pais a agregar")
     let continenteForm = prompt("Continente del pais a agregar")
 
     if(!nombreForm || !zonaHorariaForm || !continenteForm){
-        alert("Ingrese datos por favor")
+        Swal.fire({
+            icon: "error",
+            text: "Ingrese datos por favor",
+        });
         return
     }
 
@@ -129,7 +135,10 @@ btn3.addEventListener("click", (e)=>{
 
 
     if(PaisAgregado){
-        alert("Ingrese un pais que no este en la lista")
+        Swal.fire({
+            icon: "error",
+            text: "Ingrese un pais que no este en la lista!",
+        });
     }else{
     let paisAgregado = new Pais (nombreForm, zonaHorariaForm, continenteForm)
     listaPais.push(paisAgregado)
